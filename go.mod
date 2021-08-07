@@ -3,7 +3,8 @@ module pairinator
 go 1.16
 
 require (
-	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/spf13/cobra v1.2.1 // indirect
-	github.com/spf13/viper v1.8.1 // indirect
+	github.com/kami-zh/go-capturer v0.0.0-20171211120116-e492ea43421d
+	github.com/spf13/cobra v1.2.1
+	github.com/stretchr/testify v1.7.0 // indirect
+	github.com/tidwall/buntdb v1.2.4
 )
