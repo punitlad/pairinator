@@ -16,3 +16,10 @@ func Test_MemberIsMarshallable(t *testing.T) {
 	memberJson, _ := json.Marshal(NewMember("Bender"))
 	assert.Equal(t, "{\"Name\":\"Bender\",\"PairedWith\":[]}", string(memberJson))
 }
+
+func Test_MemberIsAddedToPairList(t *testing.T) {
+	member := NewMember("Bender")
+	member.AddMemberToPairList("Zoidberg")
+
+	assert.Equal(t, []string{"Zoidberg"}, member.PairedWith)
+}
