@@ -23,3 +23,22 @@ func Test_MemberIsAddedToPairList(t *testing.T) {
 
 	assert.Equal(t, []string{"Zoidberg"}, member.PairedWith)
 }
+
+func Test_ReturnsTrueWhenMemberHasPairedWithGivenName(t *testing.T) {
+	member := NewMember("Bender")
+	member.AddMemberToPairList("Zoidberg")
+
+	assert.True(t, member.HasPairedWith("Zoidberg"))
+}
+
+func Test_ReturnsTrueWhenMemberHasPairedWithSameName(t *testing.T) {
+	member := NewMember("Bender")
+
+	assert.True(t, member.HasPairedWith("Bender"))
+}
+
+func Test_ReturnsFalseWhenMemberHasNotPairedWithGivenName(t *testing.T) {
+	member := NewMember("Bender")
+
+	assert.False(t, member.HasPairedWith("Zoidberg"))
+}
