@@ -12,7 +12,8 @@ func NewMember(name string) Member {
 	return Member{name, []string{}, ""}
 }
 
-func (member *Member) AddMemberToPairList(name string) {
+func (member *Member) SetCurrentPair(name string) {
+	member.CurrentPair = name
 	member.PairedWith = append(member.PairedWith, name)
 }
 

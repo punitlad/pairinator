@@ -25,9 +25,9 @@ func (stair *PairStair) Rotate() {
 			for j, availablePair := range stair.Members {
 				if !util.Contains(assigned, availablePair.Name) {
 					if !member.HasPairedWith(availablePair.Name) {
-						availablePair.AddMemberToPairList(member.Name)
+						availablePair.SetCurrentPair(member.Name)
 						stair.Members[j] = availablePair
-						member.AddMemberToPairList(availablePair.Name)
+						member.SetCurrentPair(availablePair.Name)
 						stair.Members[i] = member
 						assigned = append(assigned, member.Name, availablePair.Name)
 						break

@@ -19,14 +19,15 @@ func Test_MemberIsMarshallable(t *testing.T) {
 
 func Test_MemberIsAddedToPairList(t *testing.T) {
 	member := NewMember("Bender")
-	member.AddMemberToPairList("Zoidberg")
+	member.SetCurrentPair("Zoidberg")
 
 	assert.Equal(t, []string{"Zoidberg"}, member.PairedWith)
+	assert.Equal(t, "Zoidberg", member.CurrentPair)
 }
 
 func Test_ReturnsTrueWhenMemberHasPairedWithGivenName(t *testing.T) {
 	member := NewMember("Bender")
-	member.AddMemberToPairList("Zoidberg")
+	member.SetCurrentPair("Zoidberg")
 
 	assert.True(t, member.HasPairedWith("Zoidberg"))
 }
