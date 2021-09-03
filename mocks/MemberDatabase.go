@@ -33,3 +33,8 @@ func (_m *MemberDatabase) GetAll() []models.Member {
 
 	return r0
 }
+
+// Update provides a mock function with given fields: member
+func (_m *MemberDatabase) Update(member models.Member) {
+	_m.Called(member)
+}

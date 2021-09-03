@@ -40,3 +40,7 @@ func (md MemberBuntDB) GetAll() []models.Member {
 
 	return members
 }
+
+func (md MemberBuntDB) Update(member models.Member) {
+
+}
