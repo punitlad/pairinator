@@ -21,6 +21,7 @@ func rotateCmd(md databases.MemberDatabase) *cobra.Command {
 
 			stair.Rotate()
 			for _, member := range stair.Members {
+				fmt.Printf("%s pairs with %s\n", member.Name, member.CurrentPair)
 				md.Update(member)
 			}
 		},
