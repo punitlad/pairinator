@@ -18,10 +18,10 @@ func Test_RotateMembers(t *testing.T) {
 		cmd.ExecuteC()
 	})
 
-	mockDb.AssertCalled(t, "Update", models.Member{Name: "Bender", PairedWith: []string{"Zoidberg"}})
-	mockDb.AssertCalled(t, "Update", models.Member{Name: "Zoidberg", PairedWith: []string{"Bender"}})
-	mockDb.AssertCalled(t, "Update", models.Member{Name: "Fry", PairedWith: []string{"Leela"}})
-	mockDb.AssertCalled(t, "Update", models.Member{Name: "Leela", PairedWith: []string{"Fry"}})
+	mockDb.AssertCalled(t, "Update", models.Member{"Bender", []string{"Zoidberg"}, "Zoidberg"})
+	mockDb.AssertCalled(t, "Update", models.Member{"Zoidberg", []string{"Bender"}, "Bender"})
+	mockDb.AssertCalled(t, "Update", models.Member{"Fry", []string{"Leela"}, "Leela"})
+	mockDb.AssertCalled(t, "Update", models.Member{"Leela", []string{"Fry"}, "Fry"})
 }
 
 func Test_PrintsOutPairsAfterRotation(t *testing.T) {

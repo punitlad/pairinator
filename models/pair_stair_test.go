@@ -12,10 +12,10 @@ func Test_RotateMembers(t *testing.T) {
 
 	stair.Rotate()
 
-	assert.Contains(t, stair.Members, Member{"Bender", []string{"Zoidberg"}, ""})
-	assert.Contains(t, stair.Members, Member{"Zoidberg", []string{"Bender"}, ""})
-	assert.Contains(t, stair.Members, Member{"Fry", []string{"Leela"}, ""})
-	assert.Contains(t, stair.Members, Member{"Leela", []string{"Fry"}, ""})
+	assert.Contains(t, stair.Members, Member{"Bender", []string{"Zoidberg"}, "Zoidberg"})
+	assert.Contains(t, stair.Members, Member{"Zoidberg", []string{"Bender"}, "Bender"})
+	assert.Contains(t, stair.Members, Member{"Fry", []string{"Leela"}, "Leela"})
+	assert.Contains(t, stair.Members, Member{"Leela", []string{"Fry"}, "Fry"})
 }
 
 func Test_CannotCreateStairLessThanFourMembers(t *testing.T) {
