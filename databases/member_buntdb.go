@@ -2,7 +2,6 @@ package databases
 
 import (
 	"encoding/json"
-	"github.com/google/uuid"
 	"github.com/tidwall/buntdb"
 	"pairinator/models"
 )
@@ -21,8 +20,7 @@ func (md MemberBuntDB) Add(member models.Member) {
 	memberJson, _ := json.Marshal(member)
 
 	md.db.Update(func(tx *buntdb.Tx) error {
-		u := uuid.New()
-		_, _, err := tx.Set(u.String(), string(memberJson), nil)
+		_, _, err := tx.Set(member.Name, string(memberJson), nil)
 		return err
 	})
 }
@@ -42,5 +40,10 @@ func (md MemberBuntDB) GetAll() []models.Member {
 }
 
 func (md MemberBuntDB) Update(member models.Member) {
+	memberJson, _ := json.Marshal(member)
 
+	md.db.Update(func(tx *buntdb.Tx) error {
+		_, _, err := tx.Set(member.Name, string(memberJson), nil)
+		return err
+	})
 }
