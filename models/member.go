@@ -20,3 +20,8 @@ func (member *Member) SetCurrentPair(name string) {
 func (member *Member) HasPairedWith(name string) bool {
 	return member.Name == name || util.Contains(member.PairedWith, name)
 }
+
+func (member *Member) Reset() {
+	member.PairedWith = []string{}
+	member.CurrentPair = ""
+}

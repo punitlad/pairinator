@@ -43,3 +43,13 @@ func Test_ReturnsFalseWhenMemberHasNotPairedWithGivenName(t *testing.T) {
 
 	assert.False(t, member.HasPairedWith("Zoidberg"))
 }
+
+func Test_ResetPairedWithAndCurrentPair(t *testing.T) {
+	member := NewMember("Bender")
+	member.PairedWith = []string{"Zoidberg", "Leela"}
+	member.CurrentPair = "Zoidberg"
+	member.Reset()
+
+	assert.Empty(t, member.PairedWith)
+	assert.Empty(t, member.CurrentPair)
+}
