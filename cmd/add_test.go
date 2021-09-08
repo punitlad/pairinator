@@ -3,11 +3,16 @@ package cmd
 import (
 	"github.com/kami-zh/go-capturer"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"pairinator/mocks"
 	"testing"
 )
 
 func Test_AddsNewMember(t *testing.T) {
-	cmd := addCmd()
+	mockDb := &mocks.MemberDatabase{}
+	mockDb.On("Add", mock.Anything).Return()
+
+	cmd := addCmd(mockDb)
 	stdout := capturer.CaptureStdout(func() {
 		cmd.SetArgs([]string{"Bender"})
 		cmd.ExecuteC()
