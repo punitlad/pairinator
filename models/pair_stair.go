@@ -3,7 +3,9 @@ package models
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 	"pairinator/util"
+	"time"
 )
 
 type PairStair struct {
@@ -27,6 +29,8 @@ func (stair *PairStair) Rotate() {
 		reset(stair)
 	}
 
+	randomize(stair.Members)
+
 	for i, member := range stair.Members {
 		if !util.Contains(assigned, member.Name) {
 			for j, availablePair := range stair.Members {
@@ -43,6 +47,11 @@ func (stair *PairStair) Rotate() {
 			}
 		}
 	}
+}
+
+func randomize(members []Member) {
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(members), func(i, j int) { members[i], members[j] = members[j], members[i] })
 }
 
 func reset(stair *PairStair) {

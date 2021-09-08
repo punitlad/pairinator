@@ -20,6 +20,19 @@ func Test_RotateMembers(t *testing.T) {
 	}
 }
 
+func Test_MembersAreRotatedInRandomOrder(t *testing.T) {
+	stair, _ := NewPairStair(
+		[]Member{NewMember("Bender"), NewMember("Zoidberg"), NewMember("Fry"), NewMember("Leela")},
+	)
+
+	stair.Rotate()
+
+	assert.NotEqual(t,
+		[]string{"Bender", "Zoidberg", "Fry", "Leela"},
+		[]string{stair.Members[0].Name, stair.Members[1].Name, stair.Members[2].Name, stair.Members[3].Name},
+	)
+}
+
 func Test_CannotCreateStairLessThanFourMembers(t *testing.T) {
 	_, err := NewPairStair(
 		[]Member{NewMember("Zoidberg"), NewMember("Fry"), NewMember("Leela")},

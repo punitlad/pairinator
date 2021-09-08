@@ -18,10 +18,7 @@ func Test_RotateMembers(t *testing.T) {
 		cmd.ExecuteC()
 	})
 
-	mockDb.AssertCalled(t, "Update", models.Member{"Bender", []string{"Zoidberg"}, "Zoidberg"})
-	mockDb.AssertCalled(t, "Update", models.Member{"Zoidberg", []string{"Bender"}, "Bender"})
-	mockDb.AssertCalled(t, "Update", models.Member{"Fry", []string{"Leela"}, "Leela"})
-	mockDb.AssertCalled(t, "Update", models.Member{"Leela", []string{"Fry"}, "Fry"})
+	mockDb.AssertNumberOfCalls(t, "Update", 4)
 }
 
 func Test_PrintsOutPairsAfterRotation(t *testing.T) {
@@ -33,8 +30,8 @@ func Test_PrintsOutPairsAfterRotation(t *testing.T) {
 		cmd.ExecuteC()
 	})
 
-	assert.Contains(t, stdout, "Bender pairs with Zoidberg")
-	assert.Contains(t, stdout, "Zoidberg pairs with Bender")
-	assert.Contains(t, stdout, "Fry pairs with Leela")
-	assert.Contains(t, stdout, "Leela pairs with Fry")
+	assert.NotContains(t, stdout, "Bender pairs with Bender")
+	assert.NotContains(t, stdout, "Zoidberg pairs with Zoidberg")
+	assert.NotContains(t, stdout, "Fry pairs with Fry")
+	assert.NotContains(t, stdout, "Leela pairs with Leela")
 }
