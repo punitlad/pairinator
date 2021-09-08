@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"pairinator/util"
 )
 
@@ -12,7 +13,7 @@ type PairStair struct {
 
 func NewPairStair(members []Member) (PairStair, error) {
 	if len(members) < 4 {
-		return PairStair{}, errors.New("Not enough members to create pair stair! Make sure to add more than 3 members.")
+		return PairStair{}, errors.New("not enough members to create pair stair! Make sure to add more than 3 members")
 	}
 
 	return PairStair{members, len(members) - 1}, nil
@@ -22,6 +23,7 @@ func (stair *PairStair) Rotate() {
 	var assigned []string
 
 	if shouldReset(stair) {
+		fmt.Println("Pair stair complete! Resetting....")
 		reset(stair)
 	}
 

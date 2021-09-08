@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/kami-zh/go-capturer"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -25,7 +26,7 @@ func Test_CannotCreateStairLessThanFourMembers(t *testing.T) {
 	)
 
 	assert.Error(t, err)
-	assert.EqualError(t, err, "Not enough members to create pair stair! Make sure to add more than 3 members.")
+	assert.EqualError(t, err, "not enough members to create pair stair! Make sure to add more than 3 members")
 }
 
 func Test_ResetStairsWhenRotationMaxIsReached(t *testing.T) {
@@ -37,8 +38,11 @@ func Test_ResetStairsWhenRotationMaxIsReached(t *testing.T) {
 	}
 	stair, _ := NewPairStair(members)
 
-	stair.Rotate()
+	out := capturer.CaptureStdout(func() {
+		stair.Rotate()
+	})
 
+	assert.Equal(t, "Pair stair complete! Resetting....\n", out)
 	for _, member := range stair.Members {
 		assert.Len(t, member.PairedWith, 1)
 	}
