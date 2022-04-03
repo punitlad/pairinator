@@ -10,9 +10,9 @@ type MemberBuntDB struct {
 	db *buntdb.DB
 }
 
-func GetMemberDatabaseInstance() MemberBuntDB {
+func GetMemberDatabaseInstance(dbPath string) MemberBuntDB {
 	md := MemberBuntDB{}
-	md.db, _ = buntdb.Open("pairinator.db")
+	md.db, _ = buntdb.Open(dbPath)
 	return md
 }
 

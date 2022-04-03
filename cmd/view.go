@@ -24,5 +24,5 @@ func viewCmd(md databases.MemberDatabase) *cobra.Command {
 }
 
 func init() {
-	rootCmd.AddCommand(viewCmd(databases.GetMemberDatabaseInstance()))
+	rootCmd.AddCommand(viewCmd(databases.GetMemberDatabaseInstance("pairinator.db")))
 }

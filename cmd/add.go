@@ -19,5 +19,5 @@ func addCmd(database databases.MemberDatabase) *cobra.Command {
 }
 
 func init() {
-	rootCmd.AddCommand(addCmd(databases.GetMemberDatabaseInstance()))
+	rootCmd.AddCommand(addCmd(databases.GetMemberDatabaseInstance("pairinator.db")))
 }

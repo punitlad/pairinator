@@ -30,5 +30,5 @@ func rotateCmd(md databases.MemberDatabase) *cobra.Command {
 }
 
 func init() {
-	rootCmd.AddCommand(rotateCmd(databases.GetMemberDatabaseInstance()))
+	rootCmd.AddCommand(rotateCmd(databases.GetMemberDatabaseInstance("pairinator.db")))
 }
