@@ -60,3 +60,22 @@ func Test_ResetStairsWhenRotationMaxIsReached(t *testing.T) {
 		assert.Len(t, member.PairedWith, 1)
 	}
 }
+
+func Test_SetsCurrentPairToEmptyForOneMemberWhenThereAreOddNumberOfMembers(t *testing.T) {
+	members := []Member{
+		NewMember("Bender"),NewMember("Zoidberg"),NewMember("Leela"),NewMember("Fry"),NewMember("Professor"),
+	}
+	stair, _ := NewPairStair(members)
+	stair.Rotate()
+	assert.Equal(t, 1, numOfSolos(stair))
+}
+
+func numOfSolos(stair PairStair) int {
+	numOfSolos := 0
+	for _, member := range stair.Members {
+		if member.CurrentPair == "" {
+			numOfSolos += 1
+		}
+	}
+	return numOfSolos
+}
