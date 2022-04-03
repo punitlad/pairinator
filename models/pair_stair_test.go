@@ -61,9 +61,22 @@ func Test_ResetStairsWhenRotationMaxIsReached(t *testing.T) {
 	}
 }
 
-func Test_SetsCurrentPairToEmptyForOneMemberWhenThereAreOddNumberOfMembers(t *testing.T) {
+func Test_SetsCurrentPairToEmptyForOneMemberWhenThereAreOddNumberOfMembersForFirstRotation(t *testing.T) {
 	members := []Member{
 		NewMember("Bender"),NewMember("Zoidberg"),NewMember("Leela"),NewMember("Fry"),NewMember("Professor"),
+	}
+	stair, _ := NewPairStair(members)
+	stair.Rotate()
+	assert.Equal(t, 1, numOfSolos(stair))
+}
+
+func Test_SetsCurrentPairToEmptyForOneMemberWhenThereAreOddNumberOfMembersForSecondRotation(t *testing.T) {
+	members := []Member{
+		{"Bender", []string{"Zoidberg"}, "Zoidberg"},
+		{"Zoidberg", []string{"Bender"}, "Bender"},
+		{"Leela", []string{"Fry"}, "Fry"},
+		{"Fry", []string{"Leela"}, "Leela"},
+		{"Professor", []string{}, ""},
 	}
 	stair, _ := NewPairStair(members)
 	stair.Rotate()

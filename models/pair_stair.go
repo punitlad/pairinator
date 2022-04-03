@@ -30,6 +30,7 @@ func (stair *PairStair) Rotate() {
 	}
 
 	randomize(stair.Members)
+	setAllCurrentPairsToEmpty(stair)
 
 	for i, member := range stair.Members {
 		if !util.Contains(assigned, member.Name) {
@@ -46,6 +47,13 @@ func (stair *PairStair) Rotate() {
 				}
 			}
 		}
+	}
+}
+
+func setAllCurrentPairsToEmpty(stair *PairStair) {
+	for i, member := range stair.Members {
+		member.SetCurrentPair("")
+		stair.Members[i] = member
 	}
 }
 
