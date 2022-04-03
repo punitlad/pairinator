@@ -6,6 +6,7 @@ import (
 	"os"
 	"pairinator/databases"
 	"pairinator/models"
+	"pairinator/views"
 )
 
 func rotateCmd(md databases.MemberDatabase) *cobra.Command {
@@ -21,8 +22,11 @@ func rotateCmd(md databases.MemberDatabase) *cobra.Command {
 
 			stair.Rotate()
 			fmt.Print("Good news everyone! Pairs have been rotated!\n\n")
+
+			view := views.NewCurrentPairsView(stair)
+			fmt.Print(view.ToString())
+
 			for _, member := range stair.Members {
-				fmt.Printf("%s pairs with %s\n", member.Name, member.CurrentPair)
 				md.Update(member)
 			}
 		},
