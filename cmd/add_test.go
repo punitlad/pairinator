@@ -27,3 +27,16 @@ func Test_AddsNewMember(t *testing.T) {
 
 	assert.Equal(t, "Successfully added pair member Zoidberg.\n", stdout)
 }
+
+func Test_AddsMultipleMembers(t *testing.T) {
+	mockDb := &mocks.MemberDatabase{}
+	mockDb.On("Add", mock.Anything).Return()
+
+	cmd := addCmd(mockDb)
+	stdout := capturer.CaptureStdout(func() {
+		cmd.SetArgs([]string{"Bender", "Zoidberg"})
+		cmd.ExecuteC()
+	})
+
+	assert.Equal(t, "Successfully added pair member Bender.\nSuccessfully added pair member Zoidberg.\n", stdout)
+}

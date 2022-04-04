@@ -12,8 +12,10 @@ func addCmd(database databases.MemberDatabase) *cobra.Command {
 		Use:   "add",
 		Short: "Add a new person that can be paired with",
 		Run: func(cmd *cobra.Command, args []string) {
-			database.Add(models.NewMember(args[0]))
-			fmt.Printf("Successfully added pair member %v.\n", args[0])
+			for _, arg := range args {
+				database.Add(models.NewMember(arg))
+				fmt.Printf("Successfully added pair member %v.\n", arg)
+			}
 		},
 	}
 }
